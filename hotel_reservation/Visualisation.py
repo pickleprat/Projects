@@ -1,5 +1,6 @@
 import pandas as pd 
 import matplotlib.pyplot as plt 
+import pickle 
 
 def colors(status):
     if status == 'Canceled':
@@ -26,6 +27,14 @@ def main():
     colormap = maptarget('booking_status', df)
     visualize(x = 'lead_time', y = 'no_of_previous_bookings_not_canceled', z = 'arrival_date', colormap= colormap, data=df)
 
+def seecols():
+
+    with open('MODELS/MLpipeline_cols.pkl', 'rb') as f:
+        text = pickle.load(f)
+
+    print(text)
+
 if __name__ == '__main__':
-    main()
+    #main()
+    seecols()
     

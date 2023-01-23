@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Colorlib Templates">
+    <meta name="author" content="Colorlib">
+    <meta name="keywords" content="Colorlib Templates">
+
+    <!-- Title Page-->
+    <title>Will they cancel ? </title>
+
+    <!-- Icons font CSS-->
+    <link href="static/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="static/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+
+    <!-- Vendor CSS-->
+    <link href="static/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="static/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="static/main.css" rel="stylesheet" media="all">
+</head>
+
+<body>
+    <div class="page-wrapper bg-red p-t-180 p-b-100 font-robo">
+        <div class="wrapper wrapper--w960">
+            <div class="card card-2">
+                
+                <div class="card-body">
+                    <h2 class="title">Reservation checker</h2>
+                    <form method="POST" action="/">
+                    
+                        <div class="row row-space">
+
+                            <div class="input-group col-2">
+                                <input class="input--style-2" type="text" placeholder="No of weekends" name="weekends">
+                            </div>
+
+                            <div class="input-group col-2">
+                                <input class="input--style-2" type="text" placeholder="No of weekdays" name="weekdays">
+                            </div>
+
+                        </div>
+
+                        <div class="row row-space">
+
+                            <div class="input-group col-2">
+                                <input class="input--style-2" type="text" placeholder="Special request count" name="specialrequest">
+                            </div>
+
+                            <div class="input-group col-2">
+                                <input class="input--style-2" type="text" placeholder="Average price per room" name="price">
+                            </div>
+
+                        </div>
+
+                        <div class="row row-space">
+
+                            <div class="input-group col-2">
+                                <input class="input--style-2" type="text" placeholder="No of previous cancellations" name="cancelled">
+                            </div>
+
+                            <div class="input-group col-2">
+                                <input class="input--style-2" type="text" placeholder="No of previous commitments" name="committed">
+                            </div>
+
+                        </div>
+        
+                        
+                        <div class="row row-space">
+                            <div class="col-2">
+
+                                <div class="rs-select2 js-select-simple select--no-search">
+                                    <select name="market">
+                                        <option disabled="disabled" selected="selected">Market type</option>
+                                        <option>Online</option>
+                                        <option>Offline</option>
+                                        <option>Corporate</option>
+                                        <option>Complementary</option>
+                                        <option>Aviation</option>
+                                    </select>
+                                    <div class="select-dropdown"></div>
+                                </div>
+                            </div>
+                            
+
+
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <div class="rs-select2 js-select-simple select--no-search">
+                                        <select name="roomtype">
+                                            <option disabled="disabled" selected="selected">Room Type</option>
+                                            {% for i in range(1, 8) %}
+                                                <option>Room_Type {{ i }}</option>
+                                            {% endfor %}
+                                        </select>
+                                        <div class="select-dropdown"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row row-space">
+                            <div class="col-2">
+
+                                <div class="rs-select2 js-select-simple select--no-search">
+                                    <select name="mealplan">
+                                        <option disabled="disabled" selected="selected">Meal Plan</option>
+
+                                        {% for i in range(1, 4) %}
+                                            <option>Meal Plan {{ i }}</option>
+                                        {% endfor %}
+
+                                    </select>
+                                    <div class="select-dropdown"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <input class="input--style-2" type="text" placeholder="lead time" name="leadtime">
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+                        <div class="row row-space">
+                            <div class="col-2">
+
+                                <div class="rs-select2 js-select-simple select--no-search">
+                                    <select name="arrivalmonth">
+                                        <option disabled="disabled" selected="selected">Arrival month</option>
+
+                                        {% for i in range(1, 13) %}
+                                            <option>{{ i }}</option>
+                                        {% endfor %}
+
+                                    </select>
+                                    <div class="select-dropdown"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-2">
+                                <div class="rs-select2 js-select-simple select--no-search">
+                                    <select name="repeatedguest">
+                                        <option disabled="disabled" selected="selected">Repeated guest ? </option>
+
+                                        {% for i in range(2) %}
+                                            <option>{{ i }}</option>
+                                        {% endfor %}
+
+                                    </select>
+                                    <div class="select-dropdown"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <br>
+                        
+
+                        <div class="p-t-30">
+                            <button class="btn btn--radius btn--green" type="submit">PREDICT</button>
+                        </div>
+
+                        <br>
+                        <br>
+                        <hr>
+                        <br>
+                        <h4 class="title">Prediction</h4>
+                        <h3 class="title">{{ prediction }}</h3>
+
+                        
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Jquery JS-->
+    <script src="static/vendor/jquery/jquery.min.js"></script>
+    <!-- Vendor JS-->
+    <script src="static/vendor/select2/select2.min.js"></script>
+    <script src="static/vendor/datepicker/moment.min.js"></script>
+    <script src="static/vendor/datepicker/daterangepicker.js"></script>
+
+    <!-- Main JS-->
+    <script src="static/global.js"></script>
+
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+
+</html>
+<!-- end document-->
